@@ -44,7 +44,7 @@ class App extends Component {
         </header> */}
         <section className="App-content">
           <p>App content goes here</p>
-          <button onClick={this.onListenClick.bind(this)}>Listen to microphone</button>
+          <button className="float" onClick={this.onListenClick.bind(this)}><i className="fas fa-microphone" aria-hidden="true"></i></button>
           <div style={{fontSize: '40px'}}>{this.state.text}</div>
         </section>
       </div>
