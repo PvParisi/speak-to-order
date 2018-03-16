@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
 import './App.css';
 import 'tachyons';
+import Menu from '../components/Menu';
+import {meals} from '../meals';
 
 import recognizeMic from 'watson-speech/speech-to-text/recognize-microphone';
 
 class App extends Component {
   constructor() {
     super()
-    this.state = {}
+    this.state = {
+      meals: [],
+      text: ''
+    }
+  }
+
+  componentDidMount() {
+    this.setState({meals})
   }
 
   onListenClick() {
@@ -23,6 +32,8 @@ class App extends Component {
             format: false // optional - performs basic formatting on the results such as capitals an periods
         });
         stream.on('data', (data) => {
+          console.log(data.alternatives);
+
           this.setState({
             text: data.alternatives[0].transcript
           })
@@ -43,7 +54,7 @@ class App extends Component {
           <h1 className="App-title f1">Speech Recognition</h1>
         </header> */}
         <section className="App-content">
-          <p>App content goes here</p>
+          <Menu meals={meals}/>
           <button className="float" onClick={this.onListenClick.bind(this)}><i className="fas fa-microphone" aria-hidden="true"></i></button>
           <div style={{fontSize: '40px'}}>{this.state.text}</div>
         </section>
