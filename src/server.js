@@ -2,11 +2,14 @@
 
 /* eslint-env node, es6 */
 
+require('dotenv').config();
+console.log(process.env.SPEECH_TO_TEXT_USERNAME);
+
 const express = require('express');
 const app = express();
 const watson = require('watson-developer-cloud');
 const vcapServices = require('vcap_services');
-const cors = require('cors')
+const cors = require('cors');
 
 // on bluemix, enable rate-limiting and force https
 if (process.env.VCAP_SERVICES) {
