@@ -4,6 +4,10 @@ body {
   font-family: sans-serif;
 }
 
-.presentation-title {
+.my-presentation-title {
   font-family: "Lobster";
+  font-size: 8em;
+  font-weight: 700;
+  margin: 0;
+  color: lightblue;
 }
