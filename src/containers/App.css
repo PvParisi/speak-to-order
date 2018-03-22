@@ -13,20 +13,3 @@
   font-size: 1.5em;
 } */
 
-.float{
-  position:fixed;
-  font-size: 1.5em;
-	width:60px;
-	height:60px;
-	bottom:80px;
-  /* right:40px; */
-  border: none;
-  outline: none;
-  cursor: pointer;
-  z-index: 99;
-	background-color:#0C9;
-	color:#FFF;
-	border-radius:50px;
-	text-align:center;
-	box-shadow: 2px 2px 3px #999;
-}

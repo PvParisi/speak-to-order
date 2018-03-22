@@ -9,5 +9,20 @@ body {
   font-size: 8em;
   font-weight: 700;
   margin: 0;
-  color: lightblue;
+  color: #62edd6;
+}
+
+.my-presentation-subtitle {
+  font-size: 1.5em;
+  color: #FFFFFF;
+  margin-top: 20px;
+}
+
+.my-presentation-instruction {
+  font-size: 2em;
+  font-family: "Lobster";
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-top: 40px;
+  transform: rotate(-8deg)
 }
