@@ -5,10 +5,14 @@ export const meals = [
     },
     {
         id: 2,
-        name: 'Pastaaaaaaaaaaaaaaa'
+        name: 'Pasta'
     },
     {
         id: 3,
         name: 'Pizza'
+    },
+    {
+        id: 4,
+        name: 'Okay'
     }
 ]
