@@ -1,0 +1,10 @@
+#instructions {
+    margin: auto;
+    padding-bottom: 20px;
+    width: 50%;
+}
+
+#instructions p {
+    font-family: 'Lobster';
+    font-size: 2em;
+}

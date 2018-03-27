@@ -14,5 +14,9 @@ export const meals = [
     {
         id: 4,
         name: 'Okay'
+    },
+    {
+        id: 5,
+        name: 'After'
     }
 ]
