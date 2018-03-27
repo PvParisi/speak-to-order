@@ -9,14 +9,14 @@ const Menu = ({ meals, foundIndex, quantity }) => {
                 <div className='spacer'></div>
                 {
                     meals.map((meal, i) => {
-                        console.log(i);
-
                         if (i === foundIndex && quantity === 0) {
                                 return (
                                     <div className='bg-lightest-blue'>
                                         <Meal
                                             key={meals[i].id}
                                             name={meals[i].name}
+                                            description={meals[i].description}
+                                            imgUrl={meals[i].imgUrl}
                                             quantity={quantity}
                                         />
                                     </div>
@@ -29,6 +29,8 @@ const Menu = ({ meals, foundIndex, quantity }) => {
                                     <Meal
                                         key={meals[i].id}
                                         name={meals[i].name}
+                                        description={meals[i].description}
+                                        imgUrl={meals[i].imgUrl}
                                         quantity={quantity}
                                     />
                                 </div>
@@ -39,6 +41,8 @@ const Menu = ({ meals, foundIndex, quantity }) => {
                             <Meal
                                 key={meals[i].id}
                                 name={meals[i].name}
+                                description={meals[i].description}
+                                imgUrl={meals[i].imgUrl}
                                 quantity={0}
                             />
                         );
