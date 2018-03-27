@@ -22,16 +22,9 @@ export const meals = [
     },
     {
         id: 4,
-        name: 'Okay',
-        description: '',
-        imgUrl: '',
-        price: ''
-    },
-    {
-        id: 5,
-        name: 'After',
-        description: '',
-        imgUrl: '',
+        name: 'Steak',
+        description: 'Beef steak served with steamed vegetables and brown sauce',
+        imgUrl: 'https://images.unsplash.com/photo-1432139509613-5c4255815697?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=616fc216eff2732910545ebd5d5018b6&auto=format&fit=crop&w=632&q=80',
         price: ''
     }
 ]
