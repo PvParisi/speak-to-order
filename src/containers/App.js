@@ -6,14 +6,15 @@ import Menu from '../components/Menu';
 import Instructions from '../components/Instructions';
 import Quantity from '../components/Quantity';
 import GotIt from '../components/GotIt';
+import Summary from './Summary';
 import {meals} from '../meals';
 import {keywordsArray} from '../keywords';
 
 import recognizeMic from 'watson-speech/speech-to-text/recognize-microphone';
 
 class App extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       meals: [],
       keywords: [],
@@ -21,8 +22,15 @@ class App extends Component {
       streamObj: null,
       found: false,
       foundIndex: -1,
-      quantity: 0
+      quantity: 0,
+      isOpen: true
     }
+  }
+
+  toggleModal = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
   }
 
   componentDidMount() {
@@ -41,7 +49,7 @@ class App extends Component {
     console.log(resStr);
 
     if(resStr === 'start'){
-      document.getElementsByClassName('App-content')[0].scrollIntoView({behavior: 'smooth'});
+      document.getElementsByClassName('App-content-top')[0].scrollIntoView({behavior: 'smooth'});
       return;
     }
 
@@ -52,12 +60,13 @@ class App extends Component {
 
     if(resStr === 'cancel') {
       // TODO questo porta in un loop infinito
-      this.setState({ found: false, foundIndex: -1, quantity: 0 });
+      //this.setState({ found: false, foundIndex: -1, quantity: 0 });
     }
 
     const resIndex = result.indexOf(resStr);
     if (resIndex >= 0 && !this.state.found) { // TODO CHECK serve la condizione !this.state.found?
       console.log('found in menu');
+      document.getElementsByClassName('App-content-top')[0].scrollIntoView({ behavior: 'smooth' });
       this.setState({found: true, foundIndex: resIndex});
     }
 
@@ -72,6 +81,7 @@ class App extends Component {
       }
       if (Number.isInteger(qty)) {
         console.log("qty is a number");
+        document.getElementsByClassName('App-content-bottom')[0].scrollIntoView({ behavior: 'smooth' });
         this.setState({quantity: qty});
       }
     }
@@ -112,6 +122,7 @@ class App extends Component {
     if (this.state.streamObj != null) {
       this.state.streamObj.stop();
       this.setState({ streamObj: null });
+      this.toggleModal();
     }
   }
 
@@ -121,7 +132,7 @@ class App extends Component {
         {/* <header className="App-header">
           <h1 className="App-title f1">Speech Recognition</h1>
         </header> */}
-        <section className="App-content">
+        <section className="App-content-top">
           <ReactCSSTransitionGroup
             transitionName="fade"
             transitionAppear={true}
@@ -131,7 +142,11 @@ class App extends Component {
             { !this.state.found && <Instructions /> }
             { this.state.found && (this.state.quantity <= 0 ) && <Quantity /> }
           </ReactCSSTransitionGroup>
+        </section>
+        <section className="App-content">
           <Menu meals={meals} foundIndex={this.state.foundIndex} quantity={this.state.quantity} />
+        </section>
+        <section className="App-content-bottom">
           <ReactCSSTransitionGroup
             transitionName="fade"
             transitionAppear={true}
@@ -143,6 +158,11 @@ class App extends Component {
           {/* <button className="float" onClick={this.onListenClick.bind(this)}><i className="fas fa-microphone" aria-hidden="true"></i></button> */}
           {/* <div style={{fontSize: '40px'}}>{this.state.text}</div> */}
         </section>
+
+        <Summary show={this.state.isOpen}
+          onClose={this.toggleModal}>
+          Here's some content for the modal
+        </Summary>
       </div>
     );
   }
