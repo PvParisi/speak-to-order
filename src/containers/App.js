@@ -23,13 +23,17 @@ class App extends Component {
       found: false,
       foundIndex: -1,
       quantity: 0,
-      isOpen: true
+      isOpen: false
     }
   }
 
   toggleModal = () => {
     this.setState({
-      isOpen: !this.state.isOpen
+      isOpen: !this.state.isOpen,
+      streamObj: null,
+      found: false,
+      foundIndex: -1,
+      quantity: 0
     });
   }
 
@@ -43,6 +47,12 @@ class App extends Component {
   }
 
   componentDidUpdate() {
+    if(this.state.isOpen)
+      return;
+    
+    if(!this.state.streamObj)
+      this.startListening();
+
     const result = meals.map(val => val.name.toLowerCase());
     console.log(result);
     const resStr = this.state.text.toLowerCase().trim();
