@@ -3,7 +3,7 @@ import Meal from './Meal';
 import './Menu.css';
 
 const Menu = ({ meals, foundIndex, quantity }) => {
-    console.log(foundIndex);
+    // console.log(foundIndex);
     return (
         <div className='grid-container ba b--silver'>
                 <div className='spacer'></div>

@@ -41,7 +41,7 @@ class App extends Component {
     this.setState({meals});
     let keywords = meals.map(a => a.name);
     keywords = keywords.concat(keywordsArray);
-    console.log(keywords);
+    // console.log(keywords);
     this.setState({ keywords });
     this.startListening();
   }
@@ -54,7 +54,7 @@ class App extends Component {
       this.startListening();
 
     const result = meals.map(val => val.name.toLowerCase());
-    console.log(result);
+    // console.log(result);
     const resStr = this.state.text.toLowerCase().trim();
     console.log(resStr);
 
@@ -75,7 +75,7 @@ class App extends Component {
 
     const resIndex = result.indexOf(resStr);
     if (resIndex >= 0 && !this.state.found) { // TODO CHECK serve la condizione !this.state.found?
-      console.log('found in menu');
+      // console.log('found in menu');
       document.getElementsByClassName('App-content-top')[0].scrollIntoView({ behavior: 'smooth' });
       this.setState({found: true, foundIndex: resIndex});
     }
@@ -84,13 +84,19 @@ class App extends Component {
     
     if (this.state.found && this.state.quantity === 0) {
       // TODO
-      const qty = parseInt(this.state.text, 10);
+      let qty = parseInt(this.state.text, 10);
+      if (resStr === 'one') qty = 1;
+      else if (resStr === 'to' || resStr === 'too') qty = 2;
+      else if (resStr === 'free') qty = 3;
+      else if (resStr === 'for') qty = 4;
+      console.log('qty', qty);
       if (qty === 0) {
+        // console.log("qty is zero");
+        document.getElementsByClassName('App-content-top')[0].scrollIntoView({ behavior: 'smooth' });
         this.setState({found: false, foundIndex: -1});
-        // return;
       }
       if (Number.isInteger(qty)) {
-        console.log("qty is a number");
+        // console.log("qty is a number");
         document.getElementsByClassName('App-content-bottom')[0].scrollIntoView({ behavior: 'smooth' });
         this.setState({quantity: qty});
       }
@@ -172,7 +178,7 @@ class App extends Component {
         <Summary show={this.state.isOpen}
           onClose={this.toggleModal}>
           <h6>Thank You!</h6>
-          <p>This is a demo app, no order has actually been placed so you still have to prepare your dinner by yourself. :)</p>
+          <p>This is a demo app, no order has actually been placed so you still have to prepare your dinner by yourself. Sorry. :)</p>
           <p>Hit the close button to try again.</p>
         </Summary>
       </div>
