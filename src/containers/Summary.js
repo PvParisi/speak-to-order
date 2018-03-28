@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { inherits } from 'util';
 
 class Summary extends React.Component {
     render() {
