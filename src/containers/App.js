@@ -161,7 +161,9 @@ class App extends Component {
 
         <Summary show={this.state.isOpen}
           onClose={this.toggleModal}>
-          Here's some content for the modal
+          <h6>Thank You!</h6>
+          <p>This is a demo app, no order has actually been placed so you still have to prepare your dinner by yourself. :)</p>
+          <p>Hit the close button to try again.</p>
         </Summary>
       </div>
     );
